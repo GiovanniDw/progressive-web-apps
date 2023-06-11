@@ -5,7 +5,7 @@ import path, { resolve } from 'path';
 import {fileURLToPath} from 'url'
 import commonjs from '@rollup/plugin-commonjs';
 import { format } from 'path';
-import { getMuseumDataByMaker } from './src/helpers/api';
+// import { getMuseumDataByMaker } from './src/helpers/api';
 
 // export default defineConfig({
 //   server: {
@@ -21,39 +21,39 @@ const __dirname = path.dirname(__filename);
 
 
 
-const rembrand = getMuseumDataByMaker('Rembrandt+van+Rijn');
-const Johannes = getMuseumDataByMaker('Johannes+Vermeer');
-const data = {
-  title: 'home',
-  makers: [{
-    name: 'Rembrand',
-    data: rembrand
-  },{
-    name: 'Johannes Vermeer',
-    data: Johannes
-  },
-]
-}
+// const rembrand = getMuseumDataByMaker('Rembrandt+van+Rijn');
+// const Johannes = getMuseumDataByMaker('Johannes+Vermeer');
+// const data = {
+//   title: 'home',
+//   makers: [{
+//     name: 'Rembrand',
+//     data: rembrand
+//   },{
+//     name: 'Johannes Vermeer',
+//     data: Johannes
+//   },
+// ]
+// }
 
-const pageData = {
-  '/index.html': {
-    title: 'Main Page',
-    makers: [{
-      name: 'Rembrand',
-      data: rembrand
-    },{
-      name: 'Johannes Vermeer',
-      data: Johannes
-    },
-  ]
-  },
-  '/collection.html': {
-    title: 'Sub Page',
-  },
-  '/details.html': {
-    title: 'Sub Page',
-  },
-};
+// const pageData = {
+//   '/index.html': {
+//     title: 'Main Page',
+//     makers: [{
+//       name: 'Rembrand',
+//       data: rembrand
+//     },{
+//       name: 'Johannes Vermeer',
+//       data: Johannes
+//     },
+//   ]
+//   },
+//   '/collection.html': {
+//     title: 'Sub Page',
+//   },
+//   '/details.html': {
+//     title: 'Sub Page',
+//   },
+// };
 
 const handlebarConfig = {
   defaultLayout: 'main',
@@ -74,7 +74,7 @@ export default defineConfig({
     origin: 'http://localhost:3000',
     fs: {
       // Allow serving files from one level up to the project root
-      allow: ['..'],
+      allow: ['../..'],
     },
   },
   strictPort: true,

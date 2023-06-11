@@ -1,5 +1,4 @@
-import { searchAll } from '../../helpers/api.js';
-
+import { searchAll } from "../helpers/api.js";
 export const SearchController = async (req,res, next) => {
 	const query = await req.query.q;
 	try {

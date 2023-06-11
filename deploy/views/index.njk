@@ -6,7 +6,7 @@
       </h2>
       <div class="h-articles">
         {% for data in maker.data %}
-          <article class="museum-item' id='{{ data.id }}">
+          <article class="museum-item" id="{{ data.id }}">
             <img class='museum-item-image' src='{{ data.webImage.url }}' alt=''/>
             <div class='item-content'>
               <a href='/collection/{{ data.id }}'>

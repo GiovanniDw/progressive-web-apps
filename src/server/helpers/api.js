@@ -1,19 +1,21 @@
-// import fetch from 'node-fetch';
+import fetch from 'node-fetch';
 
 // const baseURL = `https://www.rijksmuseum.nl/api/en/collection?key=${process.env.VITE_API_KEY}&imgonly=true`;
 
 export const searchAll = async (q) => {
+  const baseURL = `https://www.rijksmuseum.nl/api/en/collection?key=${process.env.VITE_API_KEY}&imgonly=true`;
+  let URL = baseURL;
   try {
-    const baseURL = `https://www.rijksmuseum.nl/api/en/collection?key=${process.env.VITE_API_KEY}&imgonly=true`;
-    let search = ''
-    if (q) {
-      const search = `&q=${q}`;
-    }
-    const URL = baseURL + search;
-    console.log(URL)
+    let search = `&q=${q}`;
+    // let search = ``;
+    // if (q) {
+      
+    // }
+    URL = baseURL + search;
+    console.log(URL);
     const data = await request(URL);
     const formattedResults = await formatMuseumResults(data);
-    return data;
+    return formattedResults;
   } catch (error) {
     console.log(error);
   } finally {
@@ -41,9 +43,7 @@ export const getMuseumDataByMaker = async (q) => {
 
 export const searchId = async (id) => {
   const baseURL = `https://www.rijksmuseum.nl/api/en/collection/${id}/?key=${process.env.VITE_API_KEY}`;
-
   // const URL = baseURL + search;
-  console.log(import.meta.env);
   try {
     const data = await request(baseURL);
     const formattedResult = await formatMuseumResult(data);

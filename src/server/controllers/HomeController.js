@@ -1,5 +1,7 @@
 import express from 'express';
-import { searchAll, getMuseumDataByMaker } from '../../helpers/api.js';
+import { getMuseumDataByMaker, searchAll } from '../helpers/api.js';
+// import { searchAll, getMuseumDataByMaker } from '';
+
 
 const apiKey = 'S3GLzVAr';
 const URL = `https://www.rijksmuseum.nl/api/en/collection?key=${apiKey}&imgonly=true`;

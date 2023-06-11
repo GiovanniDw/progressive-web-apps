@@ -4,20 +4,20 @@ import bodyParser from 'body-parser';
 import * as exphbs from 'express-handlebars';
 import path from 'path';
 import { fileURLToPath } from 'node:url';
-import { HomeController } from './server/controllers/HomeController.js';
-import { CollectionController, CollectionDetailsController } from './server/controllers/CollectionController.js';
-import { SearchController } from './server/controllers/SearchController.js';
 import dotenv  from "dotenv";
 import logger from 'morgan';
 import cors from 'cors';
 import nunjucks from 'nunjucks';
 import expressNunjucks from 'express-nunjucks';
 import compression from 'compression';
+import favicon from 'serve-favicon';
+import fetch from 'node-fetch';
 
+import router from './server/router/index.js';
 // const express = require("express");
 // const ViteExpress = require("vite-express");
 
-dotenv.config()
+dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -27,22 +27,32 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 const PORT = process.env.PORT || 3000;
-const router = express.Router();
 
+const CorsOptions = {
+  origin: 'localhost:5173',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  allowedHeaders: '*',
+  exposedHeaders: '*',
+  credentials: true,
+  // optionsSuccessStatus: 204 // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
 
-
+app.set('trust proxy', 'loopback');
+app.use(cors(CorsOptions));
 app.use(logger('dev'));
 app.use(compression())
-
-app.use(/.*-[0-9a-f]{10}\..*/, (req, res, next) => {
-  res.setHeader('Cache-Control', 'max-age=365000000, immutable');
-  next();
-});
+app.options('*', cors(CorsOptions));
 
 
-// app.use(express.static('./public/', {
-//   redirect:true
-// }))
+// app.use(/.*-[0-9a-f]{10}\..*/, (req, res, next) => {
+//   res.setHeader('Cache-Control', 'max-age=365000000, immutable');
+//   next();
+// });
+
+
+app.use(express.static('./public/', {
+  redirect:true
+}))
 
 
 
@@ -58,15 +68,18 @@ app.use(/.*-[0-9a-f]{10}\..*/, (req, res, next) => {
 
 
 
-app.use(favicon(path.join(__dirname, 'favicon.ico')));
+// app.use(favicon(path.join(__dirname, 'favicon.ico')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
 	extended: true
 }));
-app.use("/", express.static("public"));
-app.use('/', express.static('src/static'));
-app.use('/', express.static('src/public'));
+// app.use("/", express.static("public"));
+app.use('/', express.static('static'));
+app.use('/', express.static('public'));
+// app.use('/', express.static('./'));
+app.use('/', express.static('assets'));
 
+// console.log(express.static('./server/static'))
 app.set('view engine', 'njk');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -80,11 +93,15 @@ const njk = expressNunjucks(app, {
 //   res.sendFile(path.resolve(__dirname, "public/", "sw.js"));
 // });
 
-app.get("/", HomeController);
-app.get("/search/:q", SearchController);
+app.use(router);
 
-app.get("/collection", CollectionController);
-app.get("/collection/:id", CollectionDetailsController);
+
+
+// app.get("/", HomeController);
+// app.get("/search/:q", SearchController);
+
+// app.get("/collection", CollectionController);
+// app.get("/collection/:id", CollectionDetailsController);
 
 
 app.get('*', function (req, res, next) {

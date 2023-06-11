@@ -1,12 +1,15 @@
 {
-  "name": "single-page-app",
+  "name": "progressive-web-apps",
   "version": "1.0.0",
-  "description": "Single Page App",
-  "repository": "https://github.com/GiovanniDw/web-app-from-scratch-2223.git",
+  "description": "PWA",
+  "repository": "https://github.com/GiovanniDw/progressive-web-apps.git",
   "author": "Giovanni",
+  "private": true,
   "license": "MIT",
   "type": "module",
-  "engines": {"node": "19.x"},
+  "main": "./src/server.js",
+  "packageManager": "pnpm@8.5.1",
+  "engines.node": "18",
   "scripts": {
     "start": "NODE_ENV=production node docs/server.js",
     "dev": "NODE_ENV=development nodemon src/server.js -w src/",
@@ -30,6 +33,7 @@
     "gsap": "^3.11.4",
     "node-fetch": "^3.3.1",
     "nunjucks": "^3.2.3",
+    "serve-favicon": "^2.5.0",
     "vite-express": "^0.5.1",
     "vite-plugin-ssr": "^0.4.110"
   },
