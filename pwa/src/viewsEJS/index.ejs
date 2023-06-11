@@ -1,0 +1,27 @@
+<%- include('./partials/head.ejs') %>
+
+
+  
+  <% makers.forEach(function(maker) { %>
+    <section class="h-section">
+      <h2><%- maker.name %>
+      </h2>
+      <div class="h-articles">
+        <% 
+          if (maker.data.length) {
+          maker.data.forEach((data, i) => { %>
+          <article class='museum-item' id='<%=  data.id %>'>
+            <img class='museum-item-image' src='<%=  data.webImage.url %>' alt=''/>
+            <div class='item-content'>
+              <a href='/collection/<%=  data.id %>'>
+                <h4><%=  data.title %></h4>
+              </a>
+            </div>
+          </article>
+          <% })} %>
+      </div>
+    </section>
+  
+  <% }) %>
+
+<%- include('./partials/foot.ejs') %>

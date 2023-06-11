@@ -1,0 +1,12 @@
+{
+  "src/helpers/api.js": [
+  ],
+  "src/server.js": [
+  ],
+  "src/server/controllers/CollectionController.js": [
+  ],
+  "src/server/controllers/HomeController.js": [
+  ],
+  "src/server/controllers/SearchController.js": [
+  ]
+}

@@ -1,0 +1,19 @@
+{% extends  'base.njk' %}
+{% block  content %}
+<section class="detail-page">
+<article class='museum-item museum-item-detail' id='{{data.id}}'>
+  <img class='museum-item-image' src='{{data.webImage.url}}' alt='{{data.title}}' />
+  <div class='item-content item-content-detail'>
+    <h4>{{data.longTitle}}</h4>
+    <p>{{data.subTitle}}</p>
+    <p>{{data.description}}</p>
+    <p>{{data.principalMaker}}</p>
+    <ul> Materials
+      {% for this in data.materials %}
+          <li>{{this}}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</article>
+</section>
+{% endblock %}

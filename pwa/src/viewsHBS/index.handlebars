@@ -1,0 +1,13 @@
+{{#each makers as | maker |}}
+  <section class="h-section">
+<h2>{{maker.name}} </h2>
+  <div class="h-articles">
+  
+  {{#each maker.data}}
+  {{> singleArticle }}
+  {{maker.data.id}}
+{{/each}}
+  
+  </div>
+  </section>
+  {{/each}}

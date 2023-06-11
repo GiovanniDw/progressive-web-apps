@@ -1,0 +1,19 @@
+{% extends  'base.njk' %}
+{% block  content %}
+<h1>{{title}}</h1>
+<section id="search">
+  <h2>Results for: {{query}}</h2>
+  <div class="v-articles">
+    {% for data in maker.data %}
+          <article class='museum-item' id='{{ data.id }}'>
+            <img class='museum-item-image' src='{{ data.webImage.url }}' alt=''/>
+            <div class='item-content'>
+              <a href='/collection/{{ data.id }}'>
+                <h4>{{ data.title }}</h4>
+              </a>
+            </div>
+          </article>
+        {% endfor %}
+  </div>
+</section>
+{% endblock %}
