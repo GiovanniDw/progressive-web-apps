@@ -3,4 +3,4 @@
 	url = https://github.com/GiovanniDw/spa.git
 [submodule "pwa"]
 	path = pwa
-	url = https://github.com/GiovanniDw/pwa.git
+	url = https://github.com/GiovanniDw/PWA.git
