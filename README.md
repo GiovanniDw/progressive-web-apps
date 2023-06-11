@@ -1,7 +1,7 @@
-# 􀯖 Progressive Web Apps [Progressive Web Apps](https://github.com/cmda-minor-web/progressive-web-apps-2223)
-
+# 📲 Progressive Web Apps
+  
 ## Course Info
-[GitHub - cmda-minor-web/progressive-web-apps-2223](https://github.com/cmda-minor-web/progressive-web-apps-2223) [@ CMDA-Minor-Web](https://github.com/cmda-minor-web/) 
+[Progressive Web Apps](https://github.com/cmda-minor-web/progressive-web-apps-2223) -  [@CMDA-Minor-Web](https://github.com/cmda-minor-web/) 
 
 > GitHub - cmda-minor-web/progressive-web-apps-2223: The course Progressive Web Apps is about learning to build server side rendered applications. Progressive Web Apps is part of the half year minor programme about Web Design and Development in Amsterdam. Bachelor Communication and Multimedia Design, Amsterdam University of Applied Science.
 
