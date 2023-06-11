@@ -1,6 +1,0 @@
-[submodule "spa"]
-	path = spa
-	url = https://github.com/GiovanniDw/spa.git
-[submodule "pwa"]
-	path = pwa
-	url = https://github.com/GiovanniDw/PWA.git
