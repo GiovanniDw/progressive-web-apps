@@ -207,6 +207,12 @@ expressNunjucks(app, {
   loader: nunjucks.FileSystemLoader
 });
 app.use(router);
+
+
+app.get("/sw.js", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "public/", "sw.js"));
+});
+
 app.get("/offline", (req, res, next) => {
   res.render("offline.njk", {
     title: "Oh Oh je bent offline"

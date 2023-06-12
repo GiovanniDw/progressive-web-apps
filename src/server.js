@@ -6,7 +6,7 @@ import path from 'path';
 import { fileURLToPath } from 'node:url';
 import dotenv  from "dotenv";
 import logger from 'morgan';
-import cors from 'cors';
+
 import nunjucks from 'nunjucks';
 import expressNunjucks from 'express-nunjucks';
 import compression from 'compression';
@@ -28,21 +28,9 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-const CorsOptions = {
-  origin: 'localhost:5173',
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  allowedHeaders: '*',
-  exposedHeaders: '*',
-  credentials: true,
-  // optionsSuccessStatus: 204 // some legacy browsers (IE11, various SmartTVs) choke on 204
-};
 
-app.set('trust proxy', 'loopback');
-app.use(cors(CorsOptions));
 app.use(logger('dev'));
 app.use(compression())
-app.options('*', cors(CorsOptions));
-
 
 app.use(/.*-[0-9a-f]{10}\..*/, (req, res, next) => {
   res.setHeader('Cache-Control', 'max-age=365000000, immutable');
@@ -107,6 +95,7 @@ app.get('/offline', (req, res, next) => {
   res.render('offline.njk', {
 		title: 'Oh Oh je bent offline'
 	});
+  next(err)
 })
 
 app.get('*', function (req, res, next) {

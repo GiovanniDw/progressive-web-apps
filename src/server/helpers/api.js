@@ -40,7 +40,6 @@ export const getMuseumDataByMaker = async (q) => {
   }
 };
 
-
 export const searchId = async (id) => {
   const baseURL = `https://www.rijksmuseum.nl/api/en/collection/${id}/?key=${process.env.VITE_API_KEY}`;
   // const URL = baseURL + search;
