@@ -131,14 +131,14 @@ app.use((err, req, res, next) => {
 });
 
 
-ViteExpress.listen(app, PORT, () => {
-  console.log(__dirname)
-  console.log(`Server is listening on port ${PORT}...`)
-});
-
-
-
-// app.listen(PORT, () => {
-//   console.log(__dirname);
-//   console.log(`Server is listening on port ${PORT}...`);
+// ViteExpress.listen(app, PORT, () => {
+//   console.log(__dirname)
+//   console.log(`Server is listening on port ${PORT}...`)
 // });
+
+
+
+app.listen(PORT, () => {
+  console.log(__dirname);
+  console.log(`Server is listening on port ${PORT}...`);
+});
