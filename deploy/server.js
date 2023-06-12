@@ -211,6 +211,7 @@ app.get("/offline", (req, res, next) => {
   res.render("offline.njk", {
     title: "Oh Oh je bent offline"
   });
+  next()
 });
 app.get("*", function(req, res, next) {
   let err2 = new Error(`${req.ip} tried to reach ${req.originalUrl}`);
