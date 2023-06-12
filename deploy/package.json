@@ -12,9 +12,7 @@
   "scripts": {
     "start": "NODE_ENV=production node server.js",
     "dev": "NODE_ENV=development nodemon src/server.js -w src/",
-    "preview": "vite preview",
-    "deploy": "deploy.sh",
-    "build:html": "node src/scripts/build-html.js"
+    "preview": "vite preview"
   },
   "dependencies": {
     "body-parser": "^1.20.2",
@@ -26,6 +24,7 @@
     "express-handlebars": "^7.0.4",
     "express-nunjucks": "^2.2.5",
     "express-session": "^1.17.3",
+    "gsap": "^3.11.4",
     "node-fetch": "^3.3.1",
     "nunjucks": "^3.2.3",
     "serve-favicon": "^2.5.0",

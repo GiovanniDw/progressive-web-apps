@@ -1,47 +1,44 @@
 import express from 'express';
 import ViteExpress from 'vite-express';
 import bodyParser from 'body-parser';
-import * as exphbs from 'express-handlebars';
 import path from 'path';
 import { fileURLToPath } from 'node:url';
 import dotenv  from "dotenv";
 import logger from 'morgan';
-
 import nunjucks from 'nunjucks';
 import expressNunjucks from 'express-nunjucks';
 import compression from 'compression';
 import favicon from 'serve-favicon';
 import fetch from 'node-fetch';
 
-import router from './server/router/index.js';
-// const express = require("express");
-// const ViteExpress = require("vite-express");
+import router from './router/index.js';
+
 
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-// const __joindirname = path.join(__filename);
-
 
 const app = express();
 
 const PORT = process.env.PORT || 3000;
 
 
+
+if (process.env.NODE_ENV === 'development') {
 app.use(logger('dev'));
+}
+
+
 app.use(compression())
 
+if (process.env.NODE_ENV === 'production') {
 app.use(/.*-[0-9a-f]{10}\..*/, (req, res, next) => {
   res.setHeader('Cache-Control', 'max-age=365000000, immutable');
   next();
 });
-
-
-app.use(express.static('./public/', {
-  redirect:true
-}))
-
+app.use(favicon(path.join(__dirname, 'favicon.ico')));
+}
 
 
 
@@ -61,13 +58,33 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
 	extended: true
 }));
-// app.use("/", express.static("public"));
-app.use('/', express.static('static'));
-app.use('/', express.static('public'));
-// app.use('/', express.static('./'));
-app.use('/', express.static('assets'));
 
-// console.log(express.static('./server/static'))
+
+
+if (process.env.NODE_ENV === 'production') {
+	app.use('/', express.static('static'));
+	app.use('/', express.static('public'));
+	app.use('/assets', express.static('assets'));  
+
+	app.get("/sw.js", (req, res) => {
+		res.sendFile(path.resolve(__dirname, "public/", "sw.js"));
+	});
+
+}
+
+if (process.env.NODE_ENV === 'development') {
+	// app.use(express.static('./public/', {
+	// 	redirect:true
+	// }))
+	app.use("/", express.static(path.join(__dirname, "static")));
+	app.use("/assets", express.static(path.join(__dirname, "../assets")));
+	app.use("/", express.static(path.join(__dirname, "../../public")));
+
+	// app.get("/sw.js", (req, res) => {
+	// 	res.sendFile(path.resolve(__dirname, "public/", "sw.js"));
+	// });
+}
+
 app.set('view engine', 'njk');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -95,7 +112,7 @@ app.get('/offline', (req, res, next) => {
   res.render('offline.njk', {
 		title: 'Oh Oh je bent offline'
 	});
-  next(err)
+  next()
 })
 
 app.get('*', function (req, res, next) {
@@ -105,23 +122,23 @@ app.get('*', function (req, res, next) {
 	next(err);
 });
 
-app.use((error, req, res, next) => {
-	console.error(error);
+app.use((err, req, res, next) => {
+	console.error(err);
 	res.render('error.njk', {
 		title: error,
-		error
+		error: err
 	});
 });
 
 
-// ViteExpress.listen(app, PORT, () => {
-//   console.log(__dirname)
-//   console.log(`Server is listening on port ${PORT}...`)
-// });
-
-
-
-app.listen(PORT, () => {
-  console.log(__dirname);
-  console.log(`Server is listening on port ${PORT}...`);
+ViteExpress.listen(app, PORT, () => {
+  console.log(__dirname)
+  console.log(`Server is listening on port ${PORT}...`)
 });
+
+
+
+// app.listen(PORT, () => {
+//   console.log(__dirname);
+//   console.log(`Server is listening on port ${PORT}...`);
+// });

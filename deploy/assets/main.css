@@ -74,6 +74,7 @@ header nav {
 
 header nav .logo img {
   height: 3em;
+  width: auto;
 }
 
 #search-form {
@@ -84,6 +85,8 @@ header nav .logo img {
   /* width: 1em; */
   height: auto;
   position: relative;
+  top: 0;
+  right: 0;
   min-width: 1em;
   /* width: 2em; */
 
@@ -307,15 +310,26 @@ article {
 }
 
 img {
-  width: 100%;
+  max-width: 100%;
   height: 100%;
+  background-color: #bbb;
 }
 
 .museum-item img.museum-item-image {
+  max-width: 100%;
   object-fit: cover;
   background-position: center center;
   transition: transform 600ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  background-image: linear-gradient(90deg, #D7D7D7 0%, #AFAFAF 100%);
+  animation: loadingImg 2ms linear 3s;
 }
+
+@keyframes loadingImg {
+  to {
+    background-image: linear-gradient(400deg, #D7D7D7 0%, #AFAFAF 100%);
+  }
+}
+
 
 .h-articles .museum-item img.museum-item-image:hover {
   transform: scale(1.2);
@@ -329,3 +343,19 @@ img {
   max-width: var(--page-width);
   margin-inline: auto;
 }
+
+
+.detail-page .museum-item {
+  display: grid;
+  /* flex-direction: row; */
+  grid-template-columns: 1fr 1fr;
+
+ }
+
+ @media (max-width > 1000px) {
+  .detail-page .museum-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  
+   }
+ }

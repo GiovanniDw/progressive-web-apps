@@ -7,7 +7,7 @@ const CORE_ASSETS = [
   "/Logo.png",
   "/manifest.webmanifest",
   "/favicon.ico",
-  "https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200",
+  "https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,500,1,0",
   "https://www.rijksmuseum.nl/api/en/collection?key=S3GLzVAr&involvedMaker=Rembrandt+van+Rijn",
   "https://www.rijksmuseum.nl/api/en/collection?key=S3GLzVAr&involvedMaker=Johannes+Vermeer",
 ];

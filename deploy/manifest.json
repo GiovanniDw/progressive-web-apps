@@ -1,7 +1,14 @@
 {
-  "src/server.js": {
-    "file": "server.js",
+  "src/assets/main.css": {
+    "file": "assets/main-ba806f45.css",
+    "src": "src/assets/main.css"
+  },
+  "src/assets/main.js": {
+    "css": [
+      "assets/main-ba806f45.css"
+    ],
+    "file": "assets/main-b7a69972.js",
     "isEntry": true,
-    "src": "src/server.js"
+    "src": "src/assets/main.js"
   }
 }

@@ -5,7 +5,7 @@
   "scope": "https://pwa-production.up.railway.app/",
   "start_url": "/",
   "name": "RijksMuseum",
-  "short_name": "R",
+  "short_name": "Rijks PWA",
   "description": "RM",
   "icons": [
     {

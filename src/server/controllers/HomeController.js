@@ -1,5 +1,4 @@
-import express from 'express';
-import { getMuseumDataByMaker, searchAll } from '../helpers/api.js';
+import { getMuseumDataByMaker, searchAll } from '../helpers/api.js'
 // import { searchAll, getMuseumDataByMaker } from '';
 
 

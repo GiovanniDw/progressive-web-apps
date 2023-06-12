@@ -1,16 +1,14 @@
 import express from "express";
-import "vite-express";
+import ViteExpress from "vite-express";
 import bodyParser from "body-parser";
-import "express-handlebars";
 import path from "path";
 import { fileURLToPath } from "node:url";
 import dotenv from "dotenv";
 import logger from "morgan";
-import cors from "cors";
 import nunjucks from "nunjucks";
 import expressNunjucks from "express-nunjucks";
 import compression from "compression";
-import "serve-favicon";
+import favicon from "serve-favicon";
 import fetch from "node-fetch";
 const searchAll = async (q) => {
   const baseURL = `https://www.rijksmuseum.nl/api/en/collection?key=${process.env.VITE_API_KEY}&imgonly=true`;
@@ -22,8 +20,8 @@ const searchAll = async (q) => {
     const data = await request(URL);
     const formattedResults = await formatMuseumResults(data);
     return formattedResults;
-  } catch (error) {
-    console.log(error);
+  } catch (error2) {
+    console.log(error2);
   } finally {
     console.log("SearchDone");
   }
@@ -49,8 +47,8 @@ const searchId = async (id) => {
     const data = await request(baseURL);
     const formattedResult = await formatMuseumResult(data);
     return formattedResult;
-  } catch (error) {
-    console.log(error);
+  } catch (error2) {
+    console.log(error2);
   } finally {
     console.log("Got id ");
   }
@@ -159,7 +157,7 @@ const SearchController = async (req, res, next) => {
       query,
       data
     });
-  } catch (error) {
+  } catch (error2) {
     next(err);
   }
 };
@@ -173,33 +171,33 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3e3;
-const CorsOptions = {
-  origin: "localhost:5173",
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  allowedHeaders: "*",
-  exposedHeaders: "*",
-  credentials: true
-  // optionsSuccessStatus: 204 // some legacy browsers (IE11, various SmartTVs) choke on 204
-};
-app.set("trust proxy", "loopback");
-app.use(cors(CorsOptions));
-app.use(logger("dev"));
+if (process.env.NODE_ENV === "development") {
+  app.use(logger("dev"));
+}
 app.use(compression());
-app.options("*", cors(CorsOptions));
-app.use(/.*-[0-9a-f]{10}\..*/, (req, res, next) => {
-  res.setHeader("Cache-Control", "max-age=365000000, immutable");
-  next();
-});
-app.use(express.static("./public/", {
-  redirect: true
-}));
+if (process.env.NODE_ENV === "production") {
+  app.use(/.*-[0-9a-f]{10}\..*/, (req, res, next) => {
+    res.setHeader("Cache-Control", "max-age=365000000, immutable");
+    next();
+  });
+  app.use(favicon(path.join(__dirname, "favicon.ico")));
+}
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-app.use("/", express.static("static"));
-app.use("/", express.static("public"));
-app.use("/", express.static("assets"));
+if (process.env.NODE_ENV === "production") {
+  app.use("/", express.static("public"));
+  app.use("/assets", express.static("assets"));
+  app.get("/sw.js", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "public/", "sw.js"));
+  });
+}
+if (process.env.NODE_ENV === "development") {
+  app.use("/", express.static(path.join(__dirname, "static")));
+  app.use("/assets", express.static(path.join(__dirname, "../assets")));
+  app.use("/", express.static(path.join(__dirname, "../../public")));
+}
 app.set("view engine", "njk");
 app.set("views", path.join(__dirname, "views"));
 expressNunjucks(app, {
@@ -207,17 +205,11 @@ expressNunjucks(app, {
   loader: nunjucks.FileSystemLoader
 });
 app.use(router);
-
-
-app.get("/sw.js", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "public/", "sw.js"));
-});
-
 app.get("/offline", (req, res, next) => {
   res.render("offline.njk", {
     title: "Oh Oh je bent offline"
   });
-  next()
+  next();
 });
 app.get("*", function(req, res, next) {
   let err2 = new Error(`${req.ip} tried to reach ${req.originalUrl}`);
@@ -225,14 +217,14 @@ app.get("*", function(req, res, next) {
   err2.shouldRedirect = true;
   next(err2);
 });
-app.use((error, req, res, next) => {
-  console.error(error);
+app.use((err2, req, res, next) => {
+  console.error(err2);
   res.render("error.njk", {
     title: error,
-    error
+    error: err2
   });
 });
-app.listen(PORT, () => {
+ViteExpress.listen(app, PORT, () => {
   console.log(__dirname);
   console.log(`Server is listening on port ${PORT}...`);
 });

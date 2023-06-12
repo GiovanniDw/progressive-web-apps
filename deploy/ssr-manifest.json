@@ -1,12 +1,10 @@
 {
-  "src/helpers/api.js": [
+  "\u0000vite/modulepreload-polyfill": [
   ],
-  "src/server.js": [
+  "src/assets/base.css": [
   ],
-  "src/server/controllers/CollectionController.js": [
+  "src/assets/main.css": [
   ],
-  "src/server/controllers/HomeController.js": [
-  ],
-  "src/server/controllers/SearchController.js": [
+  "src/assets/main.js": [
   ]
 }

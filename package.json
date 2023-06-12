@@ -4,21 +4,19 @@
   "description": "PWA",
   "repository": "https://github.com/GiovanniDw/progressive-web-apps.git",
   "author": "Giovanni",
-  "private": true,
   "license": "MIT",
   "type": "module",
-  "main": "./src/server.js",
   "packageManager": "pnpm@8.5.1",
   "engines.node": "18",
   "scripts": {
-    "start": "NODE_ENV=production node docs/server.js",
-    "dev": "NODE_ENV=development nodemon src/server.js -w src/",
-    "build": "yarn build:server && yarn build:client",
+    "start": "NODE_ENV=production node server.js",
+    "dev": "NODE_ENV=development nodemon src/server/server.js -w src/server",
+    "build": "pnpm build:server && pnpm build:client",
     "preview": "vite preview",
     "deploy": "deploy.sh",
-    "build:client": "vite build --outDir docs/client --ssrManifest",
-    "build:server": "vite build --outDir docs/server --ssr src/server.js",
-    "build:html": "node src/scripts/build-html.js"
+    "build:server": "vite build --ssr src/server/server.js",
+    "build:client": "vite build --emptyOutDir false --ssrManifest",
+    "format": "prettier --write src/"
   },
   "dependencies": {
     "body-parser": "^1.20.2",
@@ -27,15 +25,12 @@
     "dotenv": "^16.0.3",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
-    "express-handlebars": "^7.0.4",
     "express-nunjucks": "^2.2.5",
     "express-session": "^1.17.3",
     "gsap": "^3.11.4",
     "node-fetch": "^3.3.1",
     "nunjucks": "^3.2.3",
-    "serve-favicon": "^2.5.0",
-    "vite-express": "^0.5.1",
-    "vite-plugin-ssr": "^0.4.110"
+    "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.0.1",
@@ -43,7 +38,6 @@
     "nodemon": "^2.0.22",
     "rollup-plugin-node-builtins": "^2.1.2",
     "vite": "^4.2.1",
-    "vite-plugin-handlebars": "^1.6.0",
-    "vite-plugin-nunjucks": "^0.1.10"
+    "vite-express": "^0.5.1"
   }
 }
