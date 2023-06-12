@@ -24,7 +24,7 @@ export default defineConfig({
     outDir: 'build',
     assetsDir: 'assets',
     sourcemap: true,
-    minify: false,
+    minify: true,
     manifest: true,
     ssrManifest: true,
     rollupOptions: {

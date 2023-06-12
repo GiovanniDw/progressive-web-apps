@@ -1,0 +1,10 @@
+{
+  "\u0000vite/modulepreload-polyfill": [
+  ],
+  "src/assets/base.css": [
+  ],
+  "src/assets/main.css": [
+  ],
+  "src/assets/main.js": [
+  ]
+}

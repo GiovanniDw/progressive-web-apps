@@ -2,8 +2,8 @@
 const CORE_CACHE_VERSION = "MyFancyCacheName_v1";
 const CORE_ASSETS = [
   "/",
-  "/css/main.css",
-  "/server.js",
+  "/assets/base.css",
+  "/assets/main.css",
   "/Logo.png",
   "/manifest.webmanifest",
   "/favicon.ico",

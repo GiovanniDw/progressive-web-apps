@@ -3,7 +3,7 @@
   "background_color": "#fff",
   "display": "standalone",
   "scope": "http://localhost:3000/",
-  "start_url": "http://localhost:3000/",
+  "start_url": "/",
   "name": "RijksMuseum",
   "short_name": "R",
   "description": "RM",

@@ -69,6 +69,8 @@ const request = async (url) => {
 export const formatMuseumResults = (data) => {
   const array = data.artObjects;
   return array.map((d) => {
+    const smallImageUrl = d.webImage && d.webImage.url.endsWith('=s0') ? d.webImage.url.replace('=s0', '=s800') : undefined;
+
     return {
       id: d.objectNumber,
       title: d.title,
@@ -78,13 +80,15 @@ export const formatMuseumResults = (data) => {
       links: d.links,
       longTitle: d.longTitle,
       webImage: d.webImage,
+      smallImage: smallImageUrl,
       principalOrFirstMaker: d.principalOrFirstMaker,
     };
   });
 };
 
 export const formatMuseumResult = (data) => {
-  const d = data.artObject
+  const d = data.artObject;
+  const smallImageUrl = d.webImage && d.webImage.url.endsWith('=s0') ? d.webImage.url.replace('=s0', '=s800') : undefined;
   return {
     id: d.objectNumber,
     title: d.title,
@@ -94,6 +98,7 @@ export const formatMuseumResult = (data) => {
     productionPlaces: d.productionPlaces,
     longTitle: d.longTitle,
     webImage: d.webImage,
+    smallImage: smallImageUrl, 
     principalOrFirstMaker: d.principalOrFirstMaker,
     physicalMedium: d.physicalMedium,
     subTitle: d.subTitle,
