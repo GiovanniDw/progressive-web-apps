@@ -1,10 +1,6 @@
 # Progressive Web Apps
 
-[progressive-web-apps-production-b06d.up.railway.app↗](progressive-web-apps-production-b06d.up.railway.app↗)
-
 ## Course Info
-
-[GitHub - cmda-minor-web/progressive-web-apps-2223: The course Progressive Web Apps is about learning to build server side rendered applications. Progressive Web Apps is part of the half year minor programme about Web Design and Development in Amsterdam. Bachelor Communication and Multimedia Design, Amsterdam University of Applied Science.](https://github.com/cmda-minor-web/progressive-web-apps-2223)
 
 ### Goals
 
@@ -16,16 +12,17 @@ After finishing this program you can:
 
 ### Rubic
 
-| **Deficiency**         | **Criterion**                                                                                                                                                                                                                                                                                                                                 |
-| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| *Project*              | Your app is published and can be accessed using the browser. Your project is thoroughly documented in the R`EADME.mdf`ile in your repository. Included are an explanation of client- server rendering, an activity diagram including the Service Worker and a list of enhancements to optimize the critical render path implemented your app. |
-| *Serverside rendering* | You’ve implemented serverside rendering and have articulated how it works and why you should want it.                                                                                                                                                                                                                                         |
-| *Service Worker*       | You’ve implemented a usefull Service Worker and show it’s working in an activity diagram.                                                                                                                                                                                                                                                     |
-| *Critical render path* | You’ve enhanced the critical render path for a better runtime or percieved performance in multiple ways and have described how you managed to do this.                                                                                                                                                                                        |
+| Deficiency | Criterion |
+| --- | --- |
+| Project | Your app is published and can be accessed using the browser. Your project is thoroughly documented in the README.mdfile in your repository. Included are an explanation of client- server rendering, an activity diagram including the Service Worker and a list of enhancements to optimize the critical render path implemented your app. |
+| Serverside rendering | You’ve implemented serverside rendering and have articulated how it works and why you should want it. |
+| Service Worker | You’ve implemented a usefull Service Worker and show it’s working in an activity diagram. |
+| Critical render path | You’ve enhanced the critical render path for a better runtime or percieved performance in multiple ways and have described how you managed to do this. |
 
 ### User Story
 
-> **Als kunstliefhebber, wil ik thuis kunst uit het Rijksmuseum kunnen zoeken en bekijken, zodat ik tijdens een lockdown toch van kunst kan genieten.**
+> Als kunstliefhebber, wil ik thuis kunst uit het Rijksmuseum kunnen zoeken en bekijken, zodat ik tijdens een lockdown toch van kunst kan genieten.
+> 
 
 ![image.png](README.assets/image.png)
 
@@ -35,7 +32,7 @@ Het Rijksmuseum verbindt mensen, kunst en geschiedenis. De databronnen van het R
 
 Van schilderij tot scheepsmodel, je vindt het in de collectiedata van het Rijksmuseum. De gegevens van meer dan een half miljoen objecten hebben we inmiddels beschikbaar gemaakt voor hergebruik, de meeste met hoge resolutie objectfoto.
 
-![Image.png](README.assets/Image.png)
+![Image_png_preview.png](README.assets/Image_png_preview.png)
 
 ## Rendering
 
@@ -45,27 +42,15 @@ When it comes to rendering web content, there are two approaches Client-Side Ren
 
 With Client Side rendering the html file is almost empty and Javascript dynamically renders and updates the content on the page without reloading the entire page.
 
-```javascript
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PWA</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
-</html>
+```jsx
+<!DOCTYPE html><html lang="en">  <head>    <meta charset="UTF-8" />    <link rel="icon" href="/favicon.ico" />    <meta name="viewport" content="width=device-width, initial-scale=1.0" />    <title>PWA</title>  </head>  <body>    <div id="app"></div>    <script type="module" src="/src/main.js"></script>  </body></html>
 ```
 
 With This approach, search engines have a hard time understanding and indexing Client-Side Renderen content, which can potentially impact the SEO performance of a web page.
 
 ### Server Side Rendering
 
-SSR is a technique that allows rendering web pages on the server and sending the fully rendered HTML to the client's browser. The fully rendered HTML pages is the reason search engines can index the pages better, thats why its important for SEO.
+SSR is a technique that allows rendering web pages on the server and sending the fully rendered HTML to the client’s browser. The fully rendered HTML pages is the reason search engines can index the pages better, thats why its important for SEO.
 
 To setup & configure a web server I have used nodeJS with the following packages:
 
@@ -75,11 +60,11 @@ To setup & configure a web server I have used nodeJS with the following packages
 - `nodemon`
 - `dotenv`
 
-#### MVC
+### MVC
 
 The FileStructure I’ve used is based on the MVC Model.
 
-```javascript
+```jsx
 ./src/server
 ├── controllers
 │   ├── CollectionController.js
@@ -106,9 +91,9 @@ The FileStructure I’ve used is based on the MVC Model.
     └── search.njk
 ```
 
-#### Routing
+### Routing
 
-```javascript
+```jsx
 import express from "express";
 import { HomeController } from '../controllers/HomeController.js';
 import { CollectionController, CollectionDetailsController } from '../controllers/CollectionController.js';
@@ -122,17 +107,16 @@ router.get("/search/:q", SearchController);
 router.get("/collection", CollectionController);
 router.get("/collection/:id", CollectionDetailsController);
 
-
 export default router;
 ```
 
 ### Controller
 
-```javascript
+```jsx
 import { searchAll, searchId } from "../helpers/api.js";
 export const CollectionController = async (req,res, next) => {
 	try {
-		const data = await searchAll('Rembrand');
+		const data = await getCollection('Rembrand');
 		return res.render('collection.njk', {
 			title: 'Collecton',
 			query: 'Rembrand',
@@ -166,35 +150,52 @@ A Service worker handles the installation and caching logic of an PWA. By using 
 
 ## Critical render Path
 
-![Image.tiff](README.assets/Image.tiff)
+Image.tiff
 
-I chose to optimize the perceived load speed and load responsiveness as I identified these as areas where the application could improve significantly. I have minified the static files of the Javascript and the CSS are split up so the important css is rendered first. Also I've Implementing caching strategies that also led to better load performance on repeated visits to our application.
+I chose to optimize the perceived load speed and load responsiveness as I identified these as areas where the application could improve significantly. I have minified the static files of the Javascript and the CSS are split up so the important css is rendered first. Also I’ve Implementing caching strategies that also led to better load performance on repeated visits to our application.
 
-![image.png](README.assets/image%20(2).png)
+![Untitled](README.assets/Untitled.png)
 
-#### First Render
+### Before Optimisation
 
-![image.png](README.assets/image%20(3).png)
+![Screenshot 2023-06-12 at 23.44.28.png](README.assets/Screenshot_2023-06-12_at_23.44.28.png)
 
-#### Improvements
+![Screenshot 2023-06-12 at 23.40.37.png](README.assets/Screenshot_2023-06-12_at_23.40.37.png)
 
-![Image.png](README.assets/Image%20(2).png)
+![image (3).png](README.assets/image_(3).png)
 
-To improve the initial page, and reduce content jumping around I've applied the following:
+![Untitled](README.assets/Untitled%201.png)
 
-#### CSS
+![Image (2).png](README.assets/Image_(2).png)
 
-```javascript
-<link rel="stylesheet" rel="preload" href="/css/base.css"/>
-<link rel="stylesheet" href="/css/main.css"/>
+### Improvements
+
+![Untitled](README.assets/Untitled%202.png)
+
+![Screenshot 2023-06-13 at 00.37.28.png](README.assets/Screenshot_2023-06-13_at_00.37.28.png)
+
+![Screenshot 2023-06-12 at 23.38.10.png](README.assets/Screenshot_2023-06-12_at_23.38.10.png)
+
+![Untitled](README.assets/Untitled%203.png)
+
+To improve the initial page, and reduce content jumping around I’ve applied the following:
+
+### CSS
+
+```jsx
+<link rel="stylesheet" rel="preload" href="/css/base.css"/><link rel="stylesheet" href="/css/main.css"/>
 ```
 
-#### Images
+### Images
 
-Add sized so content doesnt jump around when images are loaded in.
+Add size so content doesnt jump around when images are loaded in. & `loading=“lazy”` for lazy loading images.
 
-```javascript
-before  <img class="museum-item-image" src="{{ data.webImage.url }}" alt="{{data.title}}"/>
-   after <img class="museum-item-image" src="{{ data.webImage.url }}" alt="{{data.title}}" width="{{data.webImage.width}}" loading="lazy" height="{{data.webImage.height}}"/>
+before:
+
+```html
+<img class="museum-item-image" src="{{ data.webImage.url }}" alt="{{data.title}}"/>
 ```
 
+```html
+<img class="museum-item-image" src="{{ data.webImage.url }}" alt="{{data.title}}" width="{{data.webImage.width}}" loading="lazy" height="{{data.webImage.height}}"/>
+```

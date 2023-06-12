@@ -69,7 +69,7 @@ const request = async (url) => {
 export const formatMuseumResults = (data) => {
   const array = data.artObjects;
   return array.map((d) => {
-    const smallImageUrl = d.webImage && d.webImage.url.endsWith('=s0') ? d.webImage.url.replace('=s0', '=s800') : undefined;
+    const smallImageUrl = d.webImage && d.webImage.url.endsWith('=s0') ? d.webImage.url.replace('=s0', '=s400') : undefined;
 
     return {
       id: d.objectNumber,
@@ -88,7 +88,7 @@ export const formatMuseumResults = (data) => {
 
 export const formatMuseumResult = (data) => {
   const d = data.artObject;
-  const smallImageUrl = d.webImage && d.webImage.url.endsWith('=s0') ? d.webImage.url.replace('=s0', '=s800') : undefined;
+  const smallImageUrl = d.webImage && d.webImage.url.endsWith('=s0') ? d.webImage.url.replace('=s0', '=s400') : undefined;
   return {
     id: d.objectNumber,
     title: d.title,
