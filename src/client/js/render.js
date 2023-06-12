@@ -37,7 +37,7 @@ function homePage(data) {
 
     const html = /*html*/`
       <article class='museum-item' id='${id}'">
-        <img class='museum-item-image' src="${webImage.url}" alt="" />
+        <img loading="lazy" class='museum-item-image' src="${webImage.url}" alt="" />
         <div class='item-content'>
         <a href="#art/${id}">
           <h4>${item.title}</h4>

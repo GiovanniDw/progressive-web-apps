@@ -4,7 +4,8 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    {# <link rel="stylesheet" href="/css/main.css"/> #}
+    <link rel="stylesheet" rel="preload" href="/css/base.css"/>
+    <link rel="stylesheet" href="/css/main.css"/>
     {# <link rel="stylesheet" href="http://localhost:5173/src/assets/base.css"> #}
     <link rel="stylesheet" href="http://localhost:5173/src/assets/main.css">
     <link
@@ -42,7 +43,7 @@
       </main>
     </div>
     <script>
-      {# // Don't register the service worker // until the page has fully loaded if
+      // Don't register the service worker // until the page has fully loaded if
         if ('serviceWorker' in navigator) {
           window.addEventListener("load", function () {
             navigator
@@ -53,7 +54,7 @@
               })
           });
         }
-        #}
+       
     </script>
     {# <script crossorigin="anonymous" type="module" src="{{resolve-from-root 'src/client/client.js'}}"></script> #}
     <!-- if development -->

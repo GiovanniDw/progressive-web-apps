@@ -44,10 +44,10 @@ app.use(compression())
 app.options('*', cors(CorsOptions));
 
 
-// app.use(/.*-[0-9a-f]{10}\..*/, (req, res, next) => {
-//   res.setHeader('Cache-Control', 'max-age=365000000, immutable');
-//   next();
-// });
+app.use(/.*-[0-9a-f]{10}\..*/, (req, res, next) => {
+  res.setHeader('Cache-Control', 'max-age=365000000, immutable');
+  next();
+});
 
 
 app.use(express.static('./public/', {
@@ -103,6 +103,11 @@ app.use(router);
 // app.get("/collection", CollectionController);
 // app.get("/collection/:id", CollectionDetailsController);
 
+app.get('/offline', (req, res, next) => {
+  res.render('offline.njk', {
+		title: 'Oh Oh je bent offline'
+	});
+})
 
 app.get('*', function (req, res, next) {
 	let err = new Error(`${req.ip} tried to reach ${req.originalUrl}`); // Tells us which IP tried to reach a particular URL
@@ -120,13 +125,14 @@ app.use((error, req, res, next) => {
 });
 
 
-ViteExpress.listen(app, PORT, () => {
-  console.log(__dirname)
-  console.log("Server is listening on port 3000...")
-});
-
-
-// app.listen(PORT, () => {
-//   console.log(__dirname);
-//   console.log(`Server is listening on port ${PORT}...`);
+// ViteExpress.listen(app, PORT, () => {
+//   console.log(__dirname)
+//   console.log(`Server is listening on port ${PORT}...`)
 // });
+
+
+
+app.listen(PORT, () => {
+  console.log(__dirname);
+  console.log(`Server is listening on port ${PORT}...`);
+});
