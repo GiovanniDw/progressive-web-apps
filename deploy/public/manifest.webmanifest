@@ -2,11 +2,11 @@
   "theme_color": "#111",
   "background_color": "#fff",
   "display": "standalone",
-  "scope": "https://pwa-production.up.railway.app/",
+  "scope": "progressive-web-apps-production-b06d.up.railway.app",
   "start_url": "/",
   "name": "RijksMuseum",
-  "short_name": "Rijks PWA",
-  "description": "RM",
+  "short_name": "RijksPWA",
+  "description": "RijksPWA App",
   "icons": [
     {
       "src": "icons/icon@16.png",
