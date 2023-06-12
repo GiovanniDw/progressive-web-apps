@@ -24,7 +24,7 @@ After finishing this program you can:
 > Als kunstliefhebber, wil ik thuis kunst uit het Rijksmuseum kunnen zoeken en bekijken, zodat ik tijdens een lockdown toch van kunst kan genieten.
 > 
 
-![image.png](README.assets/image.png)
+![image.png](README.assets/Image.png)
 
 ### RijksData API
 
