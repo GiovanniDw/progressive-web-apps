@@ -153,8 +153,6 @@ A Service worker handles the installation and caching logic of an PWA. By using 
 
 I chose to optimize the perceived load speed and load responsiveness as I identified these as areas where the application could improve significantly. I have minified the static files of the Javascript and the CSS are split up so the important css is rendered first. Also I’ve Implementing caching strategies that also led to better load performance on repeated visits to my application.
 
-![Untitled](README.assets/Untitled.png)
-
 ### Before Optimisation
 
 
