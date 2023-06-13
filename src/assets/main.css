@@ -346,10 +346,14 @@ img {
 
  }
 
- @media (max-width > 1000px) {
+ @media (max-width: 500px) { 
+
+ }
+
+ @media (max-width: 1000px) {
   .detail-page .museum-item {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   
    }
  }
