@@ -42,8 +42,20 @@ When it comes to rendering web content, there is Client-Side Rendering, Server-S
 
 With Client Side rendering the html file is almost empty and Javascript dynamically renders and updates the content on the page without reloading the entire page.
 
-```jsx
-<!DOCTYPE html><html lang="en">  <head>    <meta charset="UTF-8" />    <link rel="icon" href="/favicon.ico" />    <meta name="viewport" content="width=device-width, initial-scale=1.0" />    <title>PWA</title>  </head>  <body>    <div id="app"></div>    <script type="module" src="/src/main.js"></script>  </body></html>
+```html
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>PWA</title>
+	</head>
+	<body>
+		<div id="app"></div>
+		<script type="module" src="/src/main.js"></script>
+	</body>
+</html>
 ```
 
 With This approach, search engines have a hard time understanding and indexing Client-Side Renderen content, which can potentially impact the SEO performance of a web page.
@@ -57,7 +69,7 @@ To setup & configure a web server I have used nodeJS with the following packages
 - `expressjs`:Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
 - `nunjucks` Nunjucks is the SSR templapting engine I used.
 - `express-nunjucks` handles some communication between the server and the templating engine.
-- `nodemon` 
+- `nodemon` refresh nodejs on file changes.
 - `vite` for bundling, building, minification etc...
 
 ### MVC
