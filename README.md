@@ -36,7 +36,7 @@ Van schilderij tot scheepsmodel, je vindt het in de collectiedata van het Rijksm
 
 ## Rendering
 
-When it comes to rendering web content, there are two approaches Client-Side Rendering & Server-Side Rendering.
+When it comes to rendering web content, there is Client-Side Rendering, Server-Side Rendering or a combination of both. Static Site Generation could also be an option but it isn't scalable. 
 
 ### Client Side Rendering
 
@@ -55,16 +55,16 @@ SSR is a technique that allows rendering web pages on the server and sending the
 To setup & configure a web server I have used nodeJS with the following packages:
 
 - `expressjs`:Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
-- `express-nunjucks`
-- `nunjucks`
-- `nodemon`
-- `dotenv`
+- `nunjucks` Nunjucks is the SSR templapting engine I used.
+- `express-nunjucks` handles some communication between the server and the templating engine.
+- `nodemon` 
+- `vite` for bundling, building, minification etc...
 
 ### MVC
 
 The FileStructure I’ve used is based on the MVC Model.
 
-```jsx
+```zsh
 ./src/server
 ├── controllers
 │   ├── CollectionController.js
@@ -145,20 +145,19 @@ export default CollectionController
 ```
 
 ## Service Worker
+![Service Worker Diagram](README.assets/ServiceWorker.png)  
+A Service worker handles the installation and caching logic of an PWA. By using a service worker the loading times can become faster, and specified files can be accesed even when the client is offline. 
 
-A Service worker handles the installation and caching logic of an PWA. By using a service worker the loading times become faster, offline acces is possible to the files that are specified.
+## Critical render Path  
+![Screenshot 2023-06-12 at 23.44.28.png](README.assets/Screenshot_2023-06-12_at_23.44.28.png)
 
-## Critical render Path
-
-Image.tiff
-
-I chose to optimize the perceived load speed and load responsiveness as I identified these as areas where the application could improve significantly. I have minified the static files of the Javascript and the CSS are split up so the important css is rendered first. Also I’ve Implementing caching strategies that also led to better load performance on repeated visits to our application.
+I chose to optimize the perceived load speed and load responsiveness as I identified these as areas where the application could improve significantly. I have minified the static files of the Javascript and the CSS are split up so the important css is rendered first. Also I’ve Implementing caching strategies that also led to better load performance on repeated visits to my application.
 
 ![Untitled](README.assets/Untitled.png)
 
 ### Before Optimisation
 
-![Screenshot 2023-06-12 at 23.44.28.png](README.assets/Screenshot_2023-06-12_at_23.44.28.png)
+
 
 ![Screenshot 2023-06-12 at 23.40.37.png](README.assets/Screenshot_2023-06-12_at_23.40.37.png)
 
@@ -180,22 +179,47 @@ I chose to optimize the perceived load speed and load responsiveness as I identi
 
 To improve the initial page, and reduce content jumping around I’ve applied the following:
 
-### CSS
+#### CSS
 
-```jsx
-<link rel="stylesheet" rel="preload" href="/css/base.css"/><link rel="stylesheet" href="/css/main.css"/>
+```html
+<link rel="stylesheet" rel="preload" href="/css/base.css"/>  
+<link rel="stylesheet" href="/css/main.css"/>
 ```
 
-### Images
+#### Images
 
 Add size so content doesnt jump around when images are loaded in. & `loading=“lazy”` for lazy loading images.
 
 before:
-
 ```html
 <img class="museum-item-image" src="{{ data.webImage.url }}" alt="{{data.title}}"/>
 ```
 
 ```html
+<<<<<<< HEAD
 <img class="museum-item-image" src="{{ data.webImage.url }}" alt="{{data.title}}" width="{{data.webImage.width}}" loading="lazy" height="{{data.webImage.height}}"/>
+=======
+<img  class="museum-item-image" src="{{ data.webImage.url }}" alt="{{data.title}}" 
+			loading="lazy" 
+			width="{{data.webImage.width}}"
+			height="{{data.webImage.height}}"/>
+```
+
+I also found out that the Rijksmuseup API had `=s0` on the end of each img url when requested. I changed it to a different value because of curiousity. and this value changed the width of the image. *`=s0`* is the original image. I changed it to a smaller width wich also reduced loading times.
+
+```js
+const smallImageUrl = d.webImage && d.webImage.url.endsWith('=s0') ? d.webImage.url.replace('=s0', '=s400') : undefined;
+```
+
+
+#### Google Fonts
+Ive removed some font variables, because they were unused. and added `&display=swap` to the url so its not blocking the font to show if its not fetched yet.
+
+```html
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+```
+
+```html
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,500,1,0&display=swap"/>
+>>>>>>> 5c7b457 (update readme)
 ```
