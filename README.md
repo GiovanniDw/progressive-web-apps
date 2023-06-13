@@ -177,8 +177,7 @@ I chose to optimize the perceived load speed and load responsiveness as I identi
 
 ![Untitled](README.assets/Untitled%203.png)
 
-To improve the initial page, and reduce content jumping around I’ve applied the following:
-
+To improve the initial page loading times, and reduce content jumping around I’ve applied the following:
 #### CSS
 
 ```html
@@ -196,9 +195,6 @@ before:
 ```
 
 ```html
-<<<<<<< HEAD
-<img class="museum-item-image" src="{{ data.webImage.url }}" alt="{{data.title}}" width="{{data.webImage.width}}" loading="lazy" height="{{data.webImage.height}}"/>
-=======
 <img  class="museum-item-image" src="{{ data.webImage.url }}" alt="{{data.title}}" 
 			loading="lazy" 
 			width="{{data.webImage.width}}"
@@ -221,5 +217,4 @@ Ive removed some font variables, because they were unused. and added `&display=s
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,500,1,0&display=swap"/>
->>>>>>> 5c7b457 (update readme)
 ```
