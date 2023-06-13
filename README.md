@@ -1,8 +1,4 @@
 # Progressive Web Apps  
-In this course we convert the client side web application, made during the Web App From Scratch course, into a server side rendered application. We also add functionalities based on the Service Worker and turn the application into a Progressive Web App. Finally we’ll implement a series of optimisations to improve the performance of the application.
-
-
-## Contents
 
 - [Course Info](#course-info)
 - [Rendering](#rendering)
@@ -10,6 +6,8 @@ In this course we convert the client side web application, made during the Web A
 - [Critical Render Path](#critical-render-path)
 
 ## Course Info
+
+In this course we convert the client side web application, made during the Web App From Scratch course, into a server side rendered application. We also add functionalities based on the Service Worker and turn the application into a Progressive Web App. Finally we’ll implement a series of optimisations to improve the performance of the application.
 
 ### Goals
 
