@@ -1,5 +1,12 @@
 # Progressive Web Apps
 
+## Contents
+
+- [Course Info](#course-info)
+- [Rendering](#rendering)
+- [Service Worker](#service-worker)
+- [Critical Render Path](#critical-render-path)
+
 ## Course Info
 
 ### Goals
