@@ -1,4 +1,6 @@
-# Progressive Web Apps
+# Progressive Web Apps  
+In this course we convert the client side web application, made during the Web App From Scratch course, into a server side rendered application. We also add functionalities based on the Service Worker and turn the application into a Progressive Web App. Finally we’ll implement a series of optimisations to improve the performance of the application.
+
 
 ## Contents
 
@@ -19,7 +21,7 @@ After finishing this program you can:
 
 ### Rubic
 
-| Deficiency | Criterion |
+|  | Criterion |
 | --- | --- |
 | Project | Your app is published and can be accessed using the browser. Your project is thoroughly documented in the README.mdfile in your repository. Included are an explanation of client- server rendering, an activity diagram including the Service Worker and a list of enhancements to optimize the critical render path implemented your app. |
 | Serverside rendering | You’ve implemented serverside rendering and have articulated how it works and why you should want it. |
