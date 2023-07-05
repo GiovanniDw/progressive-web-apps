@@ -29,7 +29,6 @@ After finishing this program you can:
 ### User Story
 
 > Als kunstliefhebber, wil ik thuis kunst uit het Rijksmuseum kunnen zoeken en bekijken, zodat ik tijdens een lockdown toch van kunst kan genieten.
-> 
 
 ![image.png](README.assets/Image.png)
 
@@ -43,7 +42,7 @@ Van schilderij tot scheepsmodel, je vindt het in de collectiedata van het Rijksm
 
 ## Rendering
 
-When it comes to rendering web content, there is Client-Side Rendering, Server-Side Rendering or a combination of both. Static Site Generation could also be an option but it isn't scalable. 
+When it comes to rendering web content, there is Client-Side Rendering, Server-Side Rendering or a combination of both. Static Site Generation could also be an option but it isn't scalable.
 
 ### Client Side Rendering
 
@@ -134,8 +133,8 @@ export default router;
 ```jsx
 import { searchAll, searchId } from "../helpers/api.js";
 export const CollectionController = async (req,res, next) => {
-	try {
-		const data = await getCollection('Rembrand');
+try {
+	const data = await getCollection('Rembrand');
 		return res.render('collection.njk', {
 			title: 'Collecton',
 			query: 'Rembrand',
@@ -164,17 +163,17 @@ export default CollectionController
 ```
 
 ## Service Worker
+
 ![Service Worker Diagram](README.assets/ServiceWorker.png)  
 A Service worker handles the installation and caching logic of an PWA. By using a service worker the loading times can become faster, and specified files can be accesed even when the client is offline. 
 
-## Critical render Path  
+## Critical render Path
+
 ![Screenshot 2023-06-12 at 23.44.28.png](README.assets/Screenshot_2023-06-12_at_23.44.28.png)
 
 I chose to optimize the perceived load speed and load responsiveness as I identified these as areas where the application could improve significantly. I have minified the static files of the Javascript and the CSS are split up so the important css is rendered first. Also I’ve Implementing caching strategies that also led to better load performance on repeated visits to my application.
 
 ### Before Optimisation
-
-
 
 ![Screenshot 2023-06-12 at 23.40.37.png](README.assets/Screenshot_2023-06-12_at_23.40.37.png)
 
@@ -199,11 +198,12 @@ I chose to optimize the perceived load speed and load responsiveness as I identi
 | Before| After |
 |-----------------------------|------------------------------|
 | ![Screenshot 2023-06-12 at 23.44.28.png](README.assets/Screenshot_2023-06-12_at_23.44.28.png) | ![Untitled](README.assets/Untitled-2.png) |
-| ![Screenshot 2023-06-12 at 23.40.37.png](README.assets/Screenshot_2023-06-12_at_23.40.37.png) | ![Screenshot](README.assets/Screenshot_2023-06-13_at_00.37.28.png) | 
+| ![Screenshot 2023-06-12 at 23.40.37.png](README.assets/Screenshot_2023-06-12_at_23.40.37.png) | ![Screenshot](README.assets/Screenshot_2023-06-13_at_00.37.28.png) |
 | ![Untitled](README.assets/Untitled-1.png)   |  ![Screenshot 2023-06-12 at 23.38.10.png](README.assets/Screenshot_2023-06-12_at_23.38.10.png) |
 |  ![Image (2).png](README.assets/Image_2.png) | ![Untitled](README.assets/Untitled-3.png) |
 
 To improve the initial page loading times, and reduce content jumping around I’ve applied the following:
+
 #### CSS
 
 ```html
@@ -216,8 +216,10 @@ To improve the initial page loading times, and reduce content jumping around I�
 Add size so content doesnt jump around when images are loaded in. & `loading=“lazy”` for lazy loading images.
 
 before:
+
 ```html
 <img class="museum-item-image" src="{{ data.webImage.url }}" alt="{{data.title}}"/>
+
 ```
 
 ```html
@@ -233,8 +235,8 @@ I also found out that the Rijksmuseup API had `=s0` on the end of each img url w
 const smallImageUrl = d.webImage && d.webImage.url.endsWith('=s0') ? d.webImage.url.replace('=s0', '=s400') : undefined;
 ```
 
-
 #### Google Fonts
+
 Ive removed some font variables, because they were unused. and added `&display=swap` to the url so its not blocking the font to show if its not fetched yet.
 
 ```html
