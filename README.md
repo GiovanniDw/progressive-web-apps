@@ -83,7 +83,7 @@ To setup & configure a web server I have used nodeJS with the following packages
 
 The FileStructure I’ve used is based on the MVC Model.
 
-```zsh
+```graphql
 ./src/server
 ├── controllers
 │   ├── CollectionController.js
