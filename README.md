@@ -19,12 +19,12 @@ After finishing this program you can:
 
 ### Rubic
 
-|  | Criterion |
-| --- | --- |
-| Project | Your app is published and can be accessed using the browser. Your project is thoroughly documented in the README.mdfile in your repository. Included are an explanation of client- server rendering, an activity diagram including the Service Worker and a list of enhancements to optimize the critical render path implemented your app. |
-| Serverside rendering | You’ve implemented serverside rendering and have articulated how it works and why you should want it. |
-| Service Worker | You’ve implemented a usefull Service Worker and show it’s working in an activity diagram. |
-| Critical render path | You’ve enhanced the critical render path for a better runtime or percieved performance in multiple ways and have described how you managed to do this. |
+|                      | Criterion                                                                                                                                                                                                                                                                                                                                   |
+|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Project              | Your app is published and can be accessed using the browser. Your project is thoroughly documented in the README.mdfile in your repository. Included are an explanation of client- server rendering, an activity diagram including the Service Worker and a list of enhancements to optimize the critical render path implemented your app. |
+| Serverside rendering | You’ve implemented serverside rendering and have articulated how it works and why you should want it.                                                                                                                                                                                                                                       |
+| Service Worker       | You’ve implemented a usefull Service Worker and show it’s working in an activity diagram.                                                                                                                                                                                                                                                   |
+| Critical render path | You’ve enhanced the critical render path for a better runtime or percieved performance in multiple ways and have described how you managed to do this.                                                                                                                                                                                      |
 
 ### User Story
 
@@ -178,21 +178,30 @@ I chose to optimize the perceived load speed and load responsiveness as I identi
 
 ![Screenshot 2023-06-12 at 23.40.37.png](README.assets/Screenshot_2023-06-12_at_23.40.37.png)
 
-![image (3).png](README.assets/image_(3).png)
+![image (3).png](README.assets/image_3.png)
 
-![Untitled](README.assets/Untitled%201.png)
+![Untitled](README.assets/Untitled-1.png)
 
-![Image (2).png](README.assets/Image_(2).png)
+![Image (2).png](README.assets/Image_2.png)
 
 ### Improvements
 
-![Untitled](README.assets/Untitled%202.png)
+![Untitled](README.assets/Untitled-2.png)
 
 ![Screenshot 2023-06-13 at 00.37.28.png](README.assets/Screenshot_2023-06-13_at_00.37.28.png)
 
 ![Screenshot 2023-06-12 at 23.38.10.png](README.assets/Screenshot_2023-06-12_at_23.38.10.png)
 
-![Untitled](README.assets/Untitled%203.png)
+![Untitled](README.assets/Untitled-3.png)
+
+### Side by Side Comparison
+
+| Before| After |
+|-----------------------------|------------------------------|
+| ![Screenshot 2023-06-12 at 23.44.28.png](README.assets/Screenshot_2023-06-12_at_23.44.28.png) | ![Untitled](README.assets/Untitled-2.png) |
+| ![Screenshot 2023-06-12 at 23.40.37.png](README.assets/Screenshot_2023-06-12_at_23.40.37.png) | ![Screenshot](README.assets/Screenshot_2023-06-13_at_00.37.28.png) | 
+| ![Untitled](README.assets/Untitled-1.png)   |  ![Screenshot 2023-06-12 at 23.38.10.png](README.assets/Screenshot_2023-06-12_at_23.38.10.png) |
+|  ![Image (2).png](README.assets/Image_2.png) | ![Untitled](README.assets/Untitled-3.png) |
 
 To improve the initial page loading times, and reduce content jumping around I’ve applied the following:
 #### CSS

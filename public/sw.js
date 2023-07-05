@@ -1,5 +1,5 @@
 // /sw.js
-const CORE_CACHE_VERSION = "MyFancyCacheName_v1";
+const CORE_CACHE_VERSION = "MyFancyCacheName_v2";
 const CORE_ASSETS = [
   "/",
   "/assets/base.css",
